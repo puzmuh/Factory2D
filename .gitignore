@@ -1,0 +1,8 @@
+# Engine is downloaded by scripts/setup-engine; pin recorded in README.
+/vendor/Ro2DEngine/
+/build/
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+.DS_Store

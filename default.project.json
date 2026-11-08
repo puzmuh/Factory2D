@@ -1,0 +1,14 @@
+{
+  "name": "Factory2D",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Ro2DEngine": { "$path": "vendor/Ro2DEngine/src" },
+      "Shared": { "$path": "src/shared" }
+    },
+    "ServerScriptService": { "$path": "src/server" },
+    "StarterPlayer": {
+      "StarterPlayerScripts": { "$path": "src/client" }
+    }
+  }
+}

@@ -21,7 +21,7 @@ gui.Parent = player:WaitForChild("PlayerGui")
 local canvas = Instance.new("Frame")
 canvas.Name = "CanvasFrame"
 canvas.Size = UDim2.fromScale(1, 1)
-canvas.BackgroundColor3 = Color3.fromRGB(24, 36, 40)
+canvas.BackgroundColor3 = Color3.fromRGB(92, 76, 52)
 canvas.BorderSizePixel = 0
 canvas.Parent = gui
 
@@ -42,7 +42,7 @@ end
 
 local function stroke(parent: GuiObject)
     local border = Instance.new("UIStroke")
-    border.Color = Color3.fromRGB(102, 130, 124)
+    border.Color = Color3.fromRGB(135, 108, 77)
     border.Transparency = 0.6
     border.Thickness = 1
     border.Parent = parent
@@ -53,7 +53,7 @@ local function newFrame(parent: Instance, name: string, size: UDim2, position: U
     frame.Name = name
     frame.Size = size
     frame.Position = position
-    frame.BackgroundColor3 = Color3.fromRGB(17, 28, 33)
+    frame.BackgroundColor3 = Color3.fromRGB(31, 26, 22)
     frame.BackgroundTransparency = 0.08
     frame.BorderSizePixel = 0
     frame.ZIndex = 3
@@ -85,19 +85,19 @@ local header = newFrame(gui, "Header", UDim2.fromOffset(435, 66), UDim2.fromOffs
 textLabel(header, "Title", "FACTORY / 2D", UDim2.fromOffset(280, 25), UDim2.fromOffset(18, 9),
     20, Color3.fromRGB(242, 246, 228), true)
 local statusLabel = textLabel(header, "Status", "Connecting to factory...", UDim2.fromOffset(403, 22),
-    UDim2.fromOffset(18, 37), 12, Color3.fromRGB(140, 187, 178), false)
+    UDim2.fromOffset(18, 37), 12, Color3.fromRGB(184, 164, 133), false)
 
 local counter = newFrame(gui, "Counter", UDim2.fromOffset(208, 66),
     UDim2.new(1, -224, 0, 16))
 textLabel(counter, "Caption", "GEARS PRODUCED", UDim2.fromOffset(180, 20),
     UDim2.fromOffset(15, 10), 11, Color3.fromRGB(149, 177, 163), true)
 local gearLabel = textLabel(counter, "Number", "0", UDim2.fromOffset(180, 28),
-    UDim2.fromOffset(15, 29), 23, Color3.fromRGB(246, 207, 118), true)
+    UDim2.fromOffset(15, 29), 23, Color3.fromRGB(237, 192, 99), true)
 
 local hint = newFrame(gui, "Hint", UDim2.fromOffset(530, 42),
     UDim2.new(0.5, -265, 1, -130))
 local hintText = textLabel(hint, "Text", "WASD pan  |  Mouse wheel zoom  |  R turn  |  F rotate machine  |  RMB remove",
-    UDim2.new(1, -24, 1, 0), UDim2.fromOffset(12, 0), 11, Color3.fromRGB(185, 207, 204), false)
+    UDim2.new(1, -24, 1, 0), UDim2.fromOffset(12, 0), 11, Color3.fromRGB(191, 174, 145), false)
 hintText.TextXAlignment = Enum.TextXAlignment.Center
 hintText.TextScaled = false
 
@@ -110,14 +110,14 @@ local snapshot: {[string]: any}? = nil
 local cache: {[string]: any}? = nil
 local buttons: {[string]: TextButton} = {}
 local selectedColors = {
-    Color3.fromRGB(235, 190, 102), Color3.fromRGB(109, 199, 173),
+    Color3.fromRGB(214, 166, 86), Color3.fromRGB(118, 149, 100),
 }
 
 local function renderToolbar()
     for tool, button in pairs(buttons) do
         local selected = tool == selectedTool
-        button.BackgroundColor3 = if selected then selectedColors[1] else Color3.fromRGB(44, 67, 69)
-        button.TextColor3 = if selected then Color3.fromRGB(26, 38, 42) else Color3.fromRGB(226, 241, 232)
+        button.BackgroundColor3 = if selected then selectedColors[1] else Color3.fromRGB(72, 58, 43)
+        button.TextColor3 = if selected then Color3.fromRGB(30, 26, 20) else Color3.fromRGB(225, 215, 194)
     end
 end
 

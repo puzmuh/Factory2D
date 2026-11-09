@@ -89,3 +89,14 @@ Factory2D/
 ## License and credits
 
 Original template code: available for you to adapt in your Roblox projects. Ro2DEngine is Copyright (c) 2026 nrmu and MIT-licensed. The upstream engine is fetched unmodified at the pinned commit and its own `LICENSE` is preserved in that clone. No licensed Factorio art/code is used or distributed.
+
+
+## Visual art pass (2026-11-08)
+The first original, **Factorio-inspired** atmospheric art pass was committed directly to this repository. The world is now rendered with deterministic dusty terrain, scrub, stone variation, metallic building silhouettes, and a small original top-down engineer placeholder. The image does not reuse Factorio textures, sprites, or characters.
+
+- `src/client/TerrainArt.luau`: terrain and ore drawing
+- `src/client/EngineerArt.luau`: original engineer drawing
+- `src/client/FactoryRenderer.luau`: scene integration and industrial structures
+- `src/client/FactoryClient.client.lua`: matching HUD colors
+
+For now the engineer is a **visual placeholder** centered on the canvas, not a networked playable character or movement/animation controller. The code is not Roblox Studio playtested here; check the Output panel for renderer errors and performance at higher zoom.

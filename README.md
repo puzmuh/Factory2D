@@ -17,29 +17,18 @@ A **playable, desktop-first, top-down 2D factory prototype** using [Ro2DEngine](
 
 **Not included yet:** persistent save data, crafting costs, combat, multiplayer co-building, inserters, power networks, train logistics, terrain mining, or robust touch/console UX. Current mode is **creative**: machine placement has no costs; ore deposits do not deplete.
 
-## 1. Install tools
+## 1. Install tools and sync with Rojo
 
-You need Roblox Studio, [the Rojo Studio plugin](https://rojo.space/docs/v7/getting-started/installation/), [Git](https://git-scm.com/), and [Aftman](https://github.com/LPGhatguy/aftman) (or install Rojo 7.7.1 manually).
-
-Open a terminal inside the extracted project. On **Windows PowerShell**:
+Clone the repository and install [Rojo](https://rojo.space/) 7.7.1 (or install [Aftman](https://github.com/LPGhatguy/aftman) and run `aftman install`). Install the Rojo Studio plugin.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\setup-engine.ps1
+git clone https://github.com/puzmuh/Factory2D.git
+cd Factory2D
 aftman install
 rojo serve default.project.json
 ```
 
-On **macOS/Linux** (or Git Bash):
-
-```bash
-bash scripts/setup-engine.sh
-aftman install
-rojo serve default.project.json
-```
-
-The setup script clones `nrmu9/Ro2DEngine` into `vendor/Ro2DEngine` and checks out **`f97a2711e869caa2b29fbf810e5f60d60e63ca10`** (October 2, 2026). The engine is MIT licensed and its license remains in its checked-out folder. `vendor/Ro2DEngine` is gitignored intentionally; everyone can restore it with `scripts/setup-engine`.
-
-If `rojo` is not found, restart your terminal after `aftman install` or make sure Aftman's shims are on PATH. To verify the project **after downloading the engine**, run `rojo build default.project.json -o build/Factory2D.rbxlx`.
+**No engine setup script is needed**: the pinned, MIT-licensed Ro2DEngine source is now committed at `vendor/Ro2DEngine/src`. Its source is directly mapped by Rojo to `ReplicatedStorage.Ro2DEngine`; upstream license is in `vendor/Ro2DEngine/LICENSE`. Upstream commit: `f97a2711e869caa2b29fbf810e5f60d60e63ca10`. To verify the Rojo project, run `rojo build default.project.json -o build/Factory2D.rbxlx`.
 
 ## 2. Studio setup
 
@@ -68,39 +57,25 @@ To build another production line, find an **ore deposit**, place a **drill** the
 
 The server won't allow placing a drill off ore, overlapping any machine, or placing outside the map. Machines don't rotate the underlying ground deposit.
 
-## 4. Create your own GitHub repository
+## 4. GitHub
 
-The GitHub app connection used for this project cannot create a new repository. Create an **empty** GitHub repo at <https://github.com/new> (suggested repo name: `Factory2D`; no README, gitignore or license file prechecked) then run in this project directory:
-
-```powershell
-git init
-git add .
-git commit -m "Initial Ro2DEngine factory starter"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/Factory2D.git
-git push -u origin main
-```
-
-Replace `YOUR_USERNAME` with your GitHub username. **Important:** the engine itself is not committed because it is independently fetched and pinned; always run `setup-engine` on new machines before running Rojo.
+This project is already at https://github.com/puzmuh/Factory2D. You can clone, edit, commit, and push from your usual local Git workflow.
 
 ## Project layout
 
 ```text
-Factory2D-Starter/
+Factory2D/
 ├── aftman.toml                 # Rojo tool version
 ├── default.project.json        # Rojo -> Roblox tree mapping
-├── scripts/
-│   ├── setup-engine.ps1        # Windows dependency bootstrap
-│   └── setup-engine.sh         # macOS/Linux bootstrap
 ├── src/
 │   ├── shared/Config.luau      # World, tools, timing, directions
 │   ├── server/
-│   │   ├── FactoryServer.server.luau # RemoteEvent and sim ticks
+│   │   ├── FactoryServer.server.lua # RemoteEvent and sim ticks
 │   │   └── FactoryWorld.luau   # Server-owned world state and recipes
 │   └── client/
-│       ├── FactoryClient.client.luau # Camera, HUD, controls
+│       ├── FactoryClient.client.lua # Camera, HUD, controls
 │       └── FactoryRenderer.luau  # Ro2D draw calls + procedural art
-└── vendor/Ro2DEngine/         # Created by setup script; ignored by Git
+└── vendor/Ro2DEngine/         # Vendored upstream engine, included in Git
 ```
 
 ## Architecture notes

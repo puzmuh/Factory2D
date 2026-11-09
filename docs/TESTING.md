@@ -1,6 +1,6 @@
 # Manual Studio verification checklist
 
-Ro2DEngine is a Roblox-runtime dependency and cannot be executed outside Roblox Studio. After you have installed the engine, built or synced with Rojo, and enabled the Mesh/Image API permission:
+Ro2DEngine is a Roblox-runtime dependency and cannot be executed outside Roblox Studio. After syncing the included engine with Rojo, and enabling Mesh/Image API permission:
 
 - [ ] Play: the game switches from the Roblox 3D world to the full-screen top-down factory canvas.
 - [ ] The starting ore drill, belts, furnace, assembler and chest are visible in one straight row.
@@ -13,6 +13,8 @@ Ro2DEngine is a Roblox-runtime dependency and cannot be executed outside Roblox 
 - [ ] Pan with `WASD`, zoom with the mouse wheel, and confirm the hovered grid cell matches the pointer.
 - [ ] Launch a second test player. Each player should have their **own** independent starter factory.
 - [ ] Inspect the Studio Output pane for `[Ro2D]` warnings or script errors.
+
+The upstream engine is vendored under `vendor/Ro2DEngine/src` and does not require a separate download. Both `FactoryClient.client.lua` and `FactoryServer.server.lua` are standard Rojo script files.
 
 If the canvas is empty, first verify that the EditableImage permission is enabled and that `ReplicatedStorage.Ro2DEngine` contains its upstream ModuleScript children after Rojo sync. For an allocation problem, try temporarily reducing `Config.CANVAS` to `Vector2.new(640, 360)`.
 
